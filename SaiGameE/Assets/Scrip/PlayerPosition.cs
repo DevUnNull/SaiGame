@@ -10,8 +10,8 @@ public class PlayerPosition : MonoBehaviour
     List<GameObject> minionPrefabs;
     public GameObject minionPrefab;// Prefab là thể hiện 1 cái gì đã có sẵn trong Unity
 
-
-
+    protected float spawnTimer = 0f;
+    protected float DelaySpawn = 1f;
     private void Start()
     {
         this.minions = new List<GameObject>(); //Khởi tạo danh sách minions
@@ -21,6 +21,11 @@ public class PlayerPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        this.spawnTimer += Time.deltaTime;
+        if (this.spawnTimer < this.DelaySpawn) return;
+        this.spawnTimer = 0f;
+
         playerPosX = transform.position.x;
         int spawnLocation = 7; // sửa lỗi chính tả
 
